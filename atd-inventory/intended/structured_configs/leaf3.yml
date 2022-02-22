@@ -41,11 +41,11 @@ router_bgp:
     10.255.251.5:
       peer_group: MLAG-IPv4-UNDERLAY-PEER
       description: leaf4
-    172.31.255.12:
+    172.31.255.8:
       peer_group: IPv4-UNDERLAY-PEERS
       remote_as: '65001'
       description: spine1_Ethernet4
-    172.31.255.14:
+    172.31.255.10:
       peer_group: IPv4-UNDERLAY-PEERS
       remote_as: '65001'
       description: spine2_Ethernet4
@@ -143,7 +143,7 @@ vrfs:
     tenant: Tenant_A
     ip_routing: true
 management_interfaces:
-  Management0:
+  Management1:
     description: oob_management
     shutdown: false
     vrf: default
@@ -214,13 +214,13 @@ port_channel_interfaces:
     trunk_groups:
     - LEAF_PEER_L3
     - MLAG
-  Port-Channel4:
+  Port-Channel6:
     description: host2_PortChanne1
     type: switched
     shutdown: false
     mode: access
     vlans: 110
-    mlag: 4
+    mlag: 6
 ethernet_interfaces:
   Ethernet1:
     peer: leaf4
@@ -250,22 +250,29 @@ ethernet_interfaces:
     mtu: 1500
     type: routed
     shutdown: false
-    ip_address: 172.31.255.13/31
+    ip_address: 172.31.255.9/31
   Ethernet4:
+    peer: spine2
+    peer_interface: Ethernet4
+    peer_type: spine
+    description: P2P_LINK_TO_SPINE2_Ethernet4
+    mtu: 1500
+    type: routed
+    shutdown: false
+    ip_address: 172.31.255.11/31
+  Ethernet6:
     peer: host2
     peer_interface: Eth1
     peer_type: server
     description: host2_Eth1
-    mtu: 1500
     type: switched
     shutdown: false
-    ip_address: 172.31.255.15/31
     mode: access
     vlans: 110
     channel_group:
-      id: 4
+      id: 6
       mode: active
-  Ethernet5:
+  Ethernet7:
     peer: host2
     peer_interface: Eth2
     peer_type: server
@@ -275,7 +282,7 @@ ethernet_interfaces:
     mode: access
     vlans: 110
     channel_group:
-      id: 4
+      id: 6
       mode: active
 mlag_configuration:
   domain_id: pod2

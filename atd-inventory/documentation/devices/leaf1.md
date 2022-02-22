@@ -63,19 +63,19 @@
 
 | Management Interface | description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management0 | oob_management | oob | default | 192.168.0.21/24 | 10.255.0.1 |
+| Management1 | oob_management | oob | default | 192.168.0.21/24 | 10.255.0.1 |
 
 #### IPv6
 
 | Management Interface | description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management0 | oob_management | oob | default | -  | - |
+| Management1 | oob_management | oob | default | -  | - |
 
 ### Management Interfaces Device Configuration
 
 ```eos
 !
-interface Management0
+interface Management1
    description oob_management
    no shutdown
    ip address 192.168.0.21/24
@@ -312,8 +312,8 @@ vlan 4094
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
 | Ethernet1 | MLAG_PEER_leaf2_Ethernet1 | *trunk | *2-4094 | *- | *['LEAF_PEER_L3', 'MLAG'] | 1 |
 | Ethernet2 | MLAG_PEER_leaf2_Ethernet2 | *trunk | *2-4094 | *- | *['LEAF_PEER_L3', 'MLAG'] | 1 |
-| Ethernet4 | host1_Eth1 | *access | *110 | *- | *- | 4 |
-| Ethernet5 | host1_Eth2 | *access | *110 | *- | *- | 4 |
+| Ethernet6 | host1_Eth1 | *access | *110 | *- | *- | 6 |
+| Ethernet7 | host1_Eth2 | *access | *110 | *- | *- | 6 |
 
 *Inherited from Port-Channel Interface
 
@@ -322,6 +322,7 @@ vlan 4094
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet3 | P2P_LINK_TO_SPINE1_Ethernet2 | routed | - | 172.31.255.1/31 | default | 1500 | false | - | - |
+| Ethernet4 | P2P_LINK_TO_SPINE2_Ethernet2 | routed | - | 172.31.255.3/31 | default | 1500 | false | - | - |
 
 ### Ethernet Interfaces Device Configuration
 
@@ -345,14 +346,21 @@ interface Ethernet3
    ip address 172.31.255.1/31
 !
 interface Ethernet4
+   description P2P_LINK_TO_SPINE2_Ethernet2
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 172.31.255.3/31
+!
+interface Ethernet6
    description host1_Eth1
    no shutdown
-   channel-group 4 mode active
+   channel-group 6 mode active
 !
-interface Ethernet5
+interface Ethernet7
    description host1_Eth2
    no shutdown
-   channel-group 4 mode active
+   channel-group 6 mode active
 ```
 
 ## Port-Channel Interfaces
@@ -364,7 +372,7 @@ interface Ethernet5
 | Interface | Description | Type | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
 | Port-Channel1 | MLAG_PEER_leaf2_Po1 | switched | trunk | 2-4094 | - | ['LEAF_PEER_L3', 'MLAG'] | - | - | - | - |
-| Port-Channel4 | host1_PortChanne1 | switched | access | 110 | - | - | - | - | 4 | - |
+| Port-Channel6 | host1_PortChanne1 | switched | access | 110 | - | - | - | - | 6 | - |
 
 ### Port-Channel Interfaces Device Configuration
 
@@ -379,12 +387,12 @@ interface Port-Channel1
    switchport trunk group LEAF_PEER_L3
    switchport trunk group MLAG
 !
-interface Port-Channel4
+interface Port-Channel6
    description host1_PortChanne1
    no shutdown
    switchport
    switchport access vlan 110
-   mlag 4
+   mlag 6
 ```
 
 ## Loopback Interfaces

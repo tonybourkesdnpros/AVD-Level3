@@ -63,19 +63,19 @@
 
 | Management Interface | description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management0 | oob_management | oob | default | 192.168.0.23/24 | 10.255.0.1 |
+| Management1 | oob_management | oob | default | 192.168.0.23/24 | 10.255.0.1 |
 
 #### IPv6
 
 | Management Interface | description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management0 | oob_management | oob | default | -  | - |
+| Management1 | oob_management | oob | default | -  | - |
 
 ### Management Interfaces Device Configuration
 
 ```eos
 !
-interface Management0
+interface Management1
    description oob_management
    no shutdown
    ip address 192.168.0.23/24
@@ -312,8 +312,8 @@ vlan 4094
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
 | Ethernet1 | MLAG_PEER_leaf4_Ethernet1 | *trunk | *2-4094 | *- | *['LEAF_PEER_L3', 'MLAG'] | 1 |
 | Ethernet2 | MLAG_PEER_leaf4_Ethernet2 | *trunk | *2-4094 | *- | *['LEAF_PEER_L3', 'MLAG'] | 1 |
-| Ethernet4 | host2_Eth1 | *access | *110 | *- | *- | 4 |
-| Ethernet5 | host2_Eth2 | *access | *110 | *- | *- | 4 |
+| Ethernet6 | host2_Eth1 | *access | *110 | *- | *- | 6 |
+| Ethernet7 | host2_Eth2 | *access | *110 | *- | *- | 6 |
 
 *Inherited from Port-Channel Interface
 
@@ -321,7 +321,8 @@ vlan 4094
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet3 | P2P_LINK_TO_SPINE1_Ethernet4 | routed | - | 172.31.255.13/31 | default | 1500 | false | - | - |
+| Ethernet3 | P2P_LINK_TO_SPINE1_Ethernet4 | routed | - | 172.31.255.9/31 | default | 1500 | false | - | - |
+| Ethernet4 | P2P_LINK_TO_SPINE2_Ethernet4 | routed | - | 172.31.255.11/31 | default | 1500 | false | - | - |
 
 ### Ethernet Interfaces Device Configuration
 
@@ -342,17 +343,24 @@ interface Ethernet3
    no shutdown
    mtu 1500
    no switchport
-   ip address 172.31.255.13/31
+   ip address 172.31.255.9/31
 !
 interface Ethernet4
+   description P2P_LINK_TO_SPINE2_Ethernet4
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 172.31.255.11/31
+!
+interface Ethernet6
    description host2_Eth1
    no shutdown
-   channel-group 4 mode active
+   channel-group 6 mode active
 !
-interface Ethernet5
+interface Ethernet7
    description host2_Eth2
    no shutdown
-   channel-group 4 mode active
+   channel-group 6 mode active
 ```
 
 ## Port-Channel Interfaces
@@ -364,7 +372,7 @@ interface Ethernet5
 | Interface | Description | Type | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
 | Port-Channel1 | MLAG_PEER_leaf4_Po1 | switched | trunk | 2-4094 | - | ['LEAF_PEER_L3', 'MLAG'] | - | - | - | - |
-| Port-Channel4 | host2_PortChanne1 | switched | access | 110 | - | - | - | - | 4 | - |
+| Port-Channel6 | host2_PortChanne1 | switched | access | 110 | - | - | - | - | 6 | - |
 
 ### Port-Channel Interfaces Device Configuration
 
@@ -379,12 +387,12 @@ interface Port-Channel1
    switchport trunk group LEAF_PEER_L3
    switchport trunk group MLAG
 !
-interface Port-Channel4
+interface Port-Channel6
    description host2_PortChanne1
    no shutdown
    switchport
    switchport access vlan 110
-   mlag 4
+   mlag 6
 ```
 
 ## Loopback Interfaces
@@ -635,8 +643,8 @@ ip route 0.0.0.0/0 10.255.0.1
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- |
 | 10.255.251.5 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | default | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - |
-| 172.31.255.12 | 65001 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - |
-| 172.31.255.14 | 65001 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - |
+| 172.31.255.8 | 65001 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - |
+| 172.31.255.10 | 65001 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - |
 | 192.0.200.1 | 65001 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS |
 | 192.0.200.2 | 65001 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS |
 | 10.255.251.5 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Tenant_A_OP_Zone | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - |
@@ -693,12 +701,12 @@ router bgp 65102
    neighbor MLAG-IPv4-UNDERLAY-PEER route-map RM-MLAG-PEER-IN in
    neighbor 10.255.251.5 peer group MLAG-IPv4-UNDERLAY-PEER
    neighbor 10.255.251.5 description leaf4
-   neighbor 172.31.255.12 peer group IPv4-UNDERLAY-PEERS
-   neighbor 172.31.255.12 remote-as 65001
-   neighbor 172.31.255.12 description spine1_Ethernet4
-   neighbor 172.31.255.14 peer group IPv4-UNDERLAY-PEERS
-   neighbor 172.31.255.14 remote-as 65001
-   neighbor 172.31.255.14 description spine2_Ethernet4
+   neighbor 172.31.255.8 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.31.255.8 remote-as 65001
+   neighbor 172.31.255.8 description spine1_Ethernet4
+   neighbor 172.31.255.10 peer group IPv4-UNDERLAY-PEERS
+   neighbor 172.31.255.10 remote-as 65001
+   neighbor 172.31.255.10 description spine2_Ethernet4
    neighbor 192.0.200.1 peer group EVPN-OVERLAY-PEERS
    neighbor 192.0.200.1 remote-as 65001
    neighbor 192.0.200.1 description spine1

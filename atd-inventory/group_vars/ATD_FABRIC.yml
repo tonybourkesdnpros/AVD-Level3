@@ -19,7 +19,7 @@ bgp_peer_groups:
 # Spine Switches
 spine:
   defaults:
-    platform: cEOS-LAB
+    platform: vEOS-LAB
     bgp_as: 65001
     loopback_ipv4_pool: 192.0.200.0/24
     bgp_defaults:
@@ -45,8 +45,8 @@ l3leaf:
     loopback_ipv4_pool: 192.0.200.0/24
     loopback_ipv4_offset: 2
     vtep_loopback_ipv4_pool: 192.0.254.0/24
-    uplink_interfaces: [Ethernet3, Ethernet4, Ethernet5]
-    uplink_switches: [spine1, spine2, spine3]
+    uplink_interfaces: [Ethernet3, Ethernet4]
+    uplink_switches: [spine1, spine2]
     uplink_ipv4_pool: 172.31.255.0/24
     mlag_interfaces: [Ethernet1, Ethernet2]
     mlag_peer_ipv4_pool: 10.255.252.0/24
@@ -66,22 +66,22 @@ l3leaf:
         leaf1:
           id: 1
           mgmt_ip: 192.168.0.21/24
-          uplink_switch_interfaces: [Ethernet2, Ethernet2, Ethernet2]
+          uplink_switch_interfaces: [Ethernet2, Ethernet2]
         leaf2:
           id: 2
           mgmt_ip: 192.168.0.22/24
-          uplink_switch_interfaces: [Ethernet3, Ethernet3, Ethernet3]
+          uplink_switch_interfaces: [Ethernet3, Ethernet3]
     pod2:
       bgp_as: 65102
       nodes:
         leaf3:
           id: 3
           mgmt_ip: 192.168.0.23/24
-          uplink_switch_interfaces: [Ethernet4, Ethernet4, Ethernet4]
+          uplink_switch_interfaces: [Ethernet4, Ethernet4]
         leaf4:
           id: 4
           mgmt_ip: 192.168.0.24/24
-          uplink_switch_interfaces: [Ethernet5, Ethernet5, Ethernet5]
+          uplink_switch_interfaces: [Ethernet5, Ethernet5]
 
 #### Override for vEOS Lab Caveats ####
 

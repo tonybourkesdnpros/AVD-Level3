@@ -13,7 +13,7 @@ cvp_ingestauth_key: 'atd-lab'
 mgmt_gateway: 10.255.0.1
 # If ATD is running cEOS, management interface is Management0
 # If ATD is running vEOS, management interface is Management1
-mgmt_interface: Management0
+mgmt_interface: Management1
 mgmt_interface_vrf: default
 
 # dns servers.

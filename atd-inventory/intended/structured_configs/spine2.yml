@@ -36,15 +36,15 @@ router_bgp:
       peer_group: IPv4-UNDERLAY-PEERS
       remote_as: '65101'
       description: leaf1_Ethernet4
-    172.31.255.9:
+    172.31.255.7:
       peer_group: IPv4-UNDERLAY-PEERS
       remote_as: '65101'
       description: leaf2_Ethernet4
-    172.31.255.15:
+    172.31.255.11:
       peer_group: IPv4-UNDERLAY-PEERS
       remote_as: '65102'
       description: leaf3_Ethernet4
-    172.31.255.21:
+    172.31.255.15:
       peer_group: IPv4-UNDERLAY-PEERS
       remote_as: '65102'
       description: leaf4_Ethernet4
@@ -106,7 +106,7 @@ vrfs:
   default:
     ip_routing: false
 management_interfaces:
-  Management0:
+  Management1:
     description: oob_management
     shutdown: false
     vrf: default
@@ -135,7 +135,7 @@ ethernet_interfaces:
     mtu: 1500
     type: routed
     shutdown: false
-    ip_address: 172.31.255.8/31
+    ip_address: 172.31.255.6/31
   Ethernet4:
     peer: leaf3
     peer_interface: Ethernet4
@@ -144,7 +144,7 @@ ethernet_interfaces:
     mtu: 1500
     type: routed
     shutdown: false
-    ip_address: 172.31.255.14/31
+    ip_address: 172.31.255.10/31
   Ethernet5:
     peer: leaf4
     peer_interface: Ethernet4
@@ -153,7 +153,7 @@ ethernet_interfaces:
     mtu: 1500
     type: routed
     shutdown: false
-    ip_address: 172.31.255.20/31
+    ip_address: 172.31.255.14/31
 loopback_interfaces:
   Loopback0:
     description: EVPN_Overlay_Peering

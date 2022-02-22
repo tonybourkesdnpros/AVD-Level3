@@ -1,6 +1,6 @@
 ![Arista CVP Automation](https://img.shields.io/badge/Arista-CVP%20Automation-blue) ![Arista EOS Automation](https://img.shields.io/badge/Arista-EOS%20Automation-blue)
 
-# AVD Arista Validated Design for Arista Test Drive
+# AVD Arista Validated Design for Arista Test Drive (Level 3/CVP Lab Edition)
 
 ## About
 

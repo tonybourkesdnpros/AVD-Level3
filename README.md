@@ -4,25 +4,24 @@
 
 ## About
 
-This repository is configured to run [`arista.cvp`](https://github.com/aristanetworks/ansible-cvp) & [`arista.avd`](https://github.com/aristanetworks/ansible-avd) ansible collections against the Arista Test Drive (ATD) Topology.
+This repository is configured to run [`arista.cvp`](https://github.com/aristanetworks/ansible-cvp) & [`arista.avd`](https://github.com/aristanetworks/ansible-avd) ansible collections against the Arista Test Drive (ATD) Topology (specifically the Level 3/CVP topology). 
 
-To access an Arista Test Drive topology, please contact your Arista representative.
 
 ## Lab Topology
 
-The DC1 portion of the Level 5 lab topology consists of 3 Spines, 6 Leafs and 2 Hosts.
+
 
 ## ATD Topology Device List
 
 | Device | IP Address   |
 | ------ | ------------ |
-| spine1-DC1 |192.168.0.11 |
-| spine2-DC1 |192.168.0.12 |
-| spine3-DC1 |192.168.0.13 |
-| leaf1-DC1  |192.168.0.21 |
-| leaf2-DC1  |192.168.0.22 |
-| leaf3-DC1  |192.168.0.23 |
-| leaf4-DC1  |192.168.0.24 |
+| spine1 |192.168.0.11 |
+| spine2 |192.168.0.12 |
+| spine3 |192.168.0.13 |
+| leaf1  |192.168.0.21 |
+| leaf2  |192.168.0.22 |
+| leaf3  |192.168.0.23 |
+| leaf4  |192.168.0.24 |
 
 # Setup Your Environment
 
@@ -35,7 +34,7 @@ Make sure to reset your lab to the default configlet assignments (BASE configlet
 ### Clone this Repository
 Make sure you're in the persist directory, then clone this repository:
 
-    git clone https://github.com/tonybourkesdnpros/AVD-Level5
+    git clone https://github.com/tonybourkesdnpros/AVD-Level3
 
 ### Install Components
 You will need to run these commands every time your lab environment starts up (most of the Linux system isn't persistent across reboots)

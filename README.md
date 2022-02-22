@@ -45,7 +45,7 @@ You will need to run these commands every time your lab environment starts up (m
     ansible-galaxy collection install community.general
     pip3 install cvprac --upgrade
 
-# Work with Playbooks
+# Reset Lab Environment to Default
 
 ### Add Lab Credentials
 
@@ -55,37 +55,13 @@ edit credentials in vscode: atd-inventory/inventory.yml
 
 ### Run Playbook to Prepare CloudVision for AVD
 
-The atd-prepare-lab.yml playbook will move leafs and spines in DC1 into a STAGING container to simulate switches just being discovered through ZTP
+The atd-reset-labs playbook will pull off any configlets that are not part of the base configuration (ATD-INFRA and switch-base configlets). It will also place the spines and leafs in the default containers, in case you've moved them for any reason. (Note: if you're using Studios, you need to de-provision all switches from Studios, as only Studios can remove Studios-generated configlets). 
 
-    ansible-playbook playbooks/atd-prepare-lab.yml
+    ansible-playbook playbooks/atd-reset-labs.yml
     
-(This will likely generate an error, that's OK, you can continue)
-
 ### Execute Tasks in CVP manually
 
 The playbook will create tasks, but not a change control, so create a change control with the open tasks and execute the change control. 
-
-### Run Playbook to Generate Configuration files
-
-We can make use of tags in AVD to execute a portion of the playbook, in this case generating all the configuration. 
-
-    ansible-playbook playbooks/atd-fabric-deploy.yml --tags=generate
-
-View the generated configuration files: 
-
-    ls atd-inventory/intended/configs
-
-Look at leaf1-DC1.cfg, and note the loopback0 IP address. It should be in the 192.0.255.0/24 address space (as a /32). 
-
-You can try changing the loopback_ipv4_pool parameter in atd-inventory/group_vars/ATD_FABRIC.yml from 192.0.255.0/24 to 192.0.200.0/24
-
-    loopback_ipv4_pool: 192.0.200.0/24
-
-Rerun the configuration generation
-
-    ansible-playbook playbooks/atd-fabric-deploy.yml --tags=build
-
-This will re-create the configuration files. Note that loopback0 has changed to the 192.0.200.0/24 address space. 
 
 # Build the Fabric
 
@@ -98,8 +74,6 @@ This will take about 2-3 minutes, and will create a series of tasks in CloudVisi
 Verify the fabric is configured
     show ip bgp summary
     show bgp evpn summary
-
-The BGP sessions may not be in Established, but that's OK. The key is the configuration was pushed from AVD. 
 
 ## Run the other playbooks
 

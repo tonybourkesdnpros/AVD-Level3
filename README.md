@@ -42,6 +42,7 @@ You will need to run these commands every time your lab environment starts up (m
     ansible-galaxy collection install arista.eos
     ansible-galaxy collection install arista.cvp
     ansible-galaxy collection install arista.avd
+    ansible-galaxy collection install community.general
     pip3 install cvprac --upgrade
 
 # Work with Playbooks

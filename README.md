@@ -25,8 +25,6 @@ This repository is configured to run [`arista.cvp`](https://github.com/aristanet
 
 # Setup Your Environment
 
-Make sure to reset your lab to the default configlet assignments (BASE configlets and ATD-INFRA). You can use the ATD-Reset-Level5 repo to do this: https://github.com/tonybourkesdnpros/ATD-Reset-Level3
-
 ### Clone this Repository
 Make sure you're in the persist directory, then clone this repository:
 

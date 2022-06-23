@@ -31,18 +31,11 @@ Make sure you're in the persist directory, then clone this repository:
     git clone https://github.com/tonybourkesdnpros/AVD-Level3
 
 ### Install Components
-You will need to run these commands every time your lab environment starts up (most of the Linux system isn't persistent across reboots)
-
-    ansible-galaxy collection install arista.eos
-    ansible-galaxy collection install arista.cvp
-    ansible-galaxy collection install arista.avd
-    ansible-galaxy collection install community.general
-    pip3 install cvprac --upgrade
 
 ### Fix for CVP modules
 You will need to downgrade your arista.cvp module:
 
-    ansible-galaxy collection install arista.cvp:==3.2.0
+    ansible-galaxy collection install arista.cvp --force
     
 # Reset Lab Environment to Default
 

@@ -21,7 +21,7 @@ spine:
   defaults:
     platform: vEOS-LAB
     bgp_as: 65001
-    loopback_ipv4_pool: 192.0.200.0/24
+    loopback_ipv4_pool: 192.168.200.0/24
     bgp_defaults:
       - 'no bgp default ipv4-unicast'
       - 'distance bgp 20 200 200'
@@ -42,9 +42,9 @@ spine:
 l3leaf:
   defaults:
     platform: cEOS-LAB
-    loopback_ipv4_pool: 192.0.200.0/24
-    loopback_ipv4_offset: 2
-    vtep_loopback_ipv4_pool: 192.0.254.0/24
+    loopback_ipv4_pool: 192.168.200.0/24
+    loopback_ipv4_offset: 0
+    vtep_loopback_ipv4_pool: 192.168.254.0/24
     uplink_interfaces: [Ethernet3, Ethernet4]
     uplink_switches: [spine1, spine2]
     uplink_ipv4_pool: 172.31.255.0/24
@@ -90,7 +90,7 @@ l3leaf:
 # Refer to design guide
 
 # Update p2p mtu 9000 -> 1500
-p2p_uplinks_mtu: 1500
+p2p_uplinks_mtu: 9214
 
 # Adjust default bfd values
 bfd_multihop:

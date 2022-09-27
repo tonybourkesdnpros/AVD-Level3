@@ -2,7 +2,6 @@
 # L3LS Fabric Values - update these values with caution,
 # SOME CHANGES COULD BE DISRUPTIVE.
 
-fabric_name: ATD_FABRIC
 
 # Enable vlan aware bundles
 vxlan_vlan_aware_bundles: true
@@ -21,7 +20,7 @@ spine:
   defaults:
     platform: vEOS-LAB
     bgp_as: 65001
-    loopback_ipv4_pool: 192.0.200.0/24
+    loopback_ipv4_pool: 192.168.200.0/24
     bgp_defaults:
       - 'no bgp default ipv4-unicast'
       - 'distance bgp 20 200 200'
@@ -35,23 +34,26 @@ spine:
     spine2:
       id: 12
       mgmt_ip: 192.168.0.12/24
+    spine3:
+      id: 13
+      mgmt_ip: 192.168.0.13/24
 # Leaf switch groups
 # A maximum of two nodes can form a leaf group
 # When two nodes are in a leaf group this will automatically form mlag pair
 
 l3leaf:
   defaults:
-    platform: cEOS-LAB
-    loopback_ipv4_pool: 192.0.200.0/24
+    platform: vEOS-LAB
+    loopback_ipv4_pool: 192.168.200.0/24
     loopback_ipv4_offset: 2
-    vtep_loopback_ipv4_pool: 192.0.254.0/24
-    uplink_interfaces: [Ethernet3, Ethernet4]
-    uplink_switches: [spine1, spine2]
+    vtep_loopback_ipv4_pool: 192.168.201.0/24
+    uplink_interfaces: [Ethernet3, Ethernet4, Ethernet5]
+    uplink_switches: [spine1, spine2, spine3]
     uplink_ipv4_pool: 172.31.255.0/24
     mlag_interfaces: [Ethernet1, Ethernet2]
     mlag_peer_ipv4_pool: 10.255.252.0/24
     mlag_peer_l3_ipv4_pool: 10.255.251.0/24
-    virtual_router_mac_address: 00:1c:73:00:dc:01
+    virtual_router_mac_address: 00:1c:73:00:00:99
     bgp_defaults:
       - 'no bgp default ipv4-unicast'
       - 'distance bgp 20 200 200'
@@ -60,7 +62,7 @@ l3leaf:
     spanning_tree_mode: mstp
     spanning_tree_priority: 16384
   node_groups:
-    pod1:
+    rack1:
       bgp_as: 65101
       nodes:
         leaf1:
@@ -71,7 +73,7 @@ l3leaf:
           id: 2
           mgmt_ip: 192.168.0.22/24
           uplink_switch_interfaces: [Ethernet3, Ethernet3]
-    pod2:
+    rack2:
       bgp_as: 65102
       nodes:
         leaf3:

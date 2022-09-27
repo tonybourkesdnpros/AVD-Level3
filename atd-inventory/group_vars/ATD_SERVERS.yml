@@ -6,7 +6,7 @@ port_profiles:
 
 servers:
   host1:
-    rack: pod1
+    rack: rack1
     adapters:
       - type: nic
         server_ports: [Eth1, Eth2, Eth3, Eth4]
@@ -18,7 +18,7 @@ servers:
           description: PortChanne1
           mode: active
   host2:
-    rack: pod2
+    rack: rack2
     adapters:
       - type: nic
         server_ports: [Eth1, Eth2, Eth3, Eth4]

@@ -167,13 +167,13 @@ vlan_interfaces:
     description: MLAG_PEER_L3_PEERING
     shutdown: false
     ip_address: 10.255.251.1/31
-    mtu: 9000
+    mtu: 9214
   Vlan4094:
     description: MLAG_PEER
     shutdown: false
     ip_address: 10.255.252.1/31
     no_autostate: true
-    mtu: 9000
+    mtu: 9214
   Vlan10:
     tenant: Picard
     tags:
@@ -197,7 +197,7 @@ vlan_interfaces:
     description: 'MLAG_PEER_L3_iBGP: vrf Riker'
     vrf: Riker
     ip_address: 10.255.251.1/31
-    mtu: 9000
+    mtu: 9214
 port_channel_interfaces:
   Port-Channel1:
     description: MLAG_PEER_leaf1_Po1
@@ -241,7 +241,7 @@ ethernet_interfaces:
     peer_interface: Ethernet3
     peer_type: spine
     description: P2P_LINK_TO_SPINE1_Ethernet3
-    mtu: 9000
+    mtu: 9214
     type: routed
     shutdown: false
     ip_address: 172.31.255.7/31
@@ -250,7 +250,7 @@ ethernet_interfaces:
     peer_interface: Ethernet3
     peer_type: spine
     description: P2P_LINK_TO_SPINE2_Ethernet3
-    mtu: 9000
+    mtu: 9214
     type: routed
     shutdown: false
     ip_address: 172.31.255.9/31

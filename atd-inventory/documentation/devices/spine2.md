@@ -214,10 +214,10 @@ vlan internal order ascending range 1006 1199
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet2 | P2P_LINK_TO_LEAF1_Ethernet4 | routed | - | 172.31.255.2/31 | default | 9000 | False | - | - |
-| Ethernet3 | P2P_LINK_TO_LEAF2_Ethernet4 | routed | - | 172.31.255.8/31 | default | 9000 | False | - | - |
-| Ethernet4 | P2P_LINK_TO_LEAF3_Ethernet4 | routed | - | 172.31.255.14/31 | default | 9000 | False | - | - |
-| Ethernet5 | P2P_LINK_TO_LEAF4_Ethernet4 | routed | - | 172.31.255.20/31 | default | 9000 | False | - | - |
+| Ethernet2 | P2P_LINK_TO_LEAF1_Ethernet4 | routed | - | 172.31.255.2/31 | default | 9214 | False | - | - |
+| Ethernet3 | P2P_LINK_TO_LEAF2_Ethernet4 | routed | - | 172.31.255.8/31 | default | 9214 | False | - | - |
+| Ethernet4 | P2P_LINK_TO_LEAF3_Ethernet4 | routed | - | 172.31.255.14/31 | default | 9214 | False | - | - |
+| Ethernet5 | P2P_LINK_TO_LEAF4_Ethernet4 | routed | - | 172.31.255.20/31 | default | 9214 | False | - | - |
 
 ### Ethernet Interfaces Device Configuration
 
@@ -226,28 +226,28 @@ vlan internal order ascending range 1006 1199
 interface Ethernet2
    description P2P_LINK_TO_LEAF1_Ethernet4
    no shutdown
-   mtu 9000
+   mtu 9214
    no switchport
    ip address 172.31.255.2/31
 !
 interface Ethernet3
    description P2P_LINK_TO_LEAF2_Ethernet4
    no shutdown
-   mtu 9000
+   mtu 9214
    no switchport
    ip address 172.31.255.8/31
 !
 interface Ethernet4
    description P2P_LINK_TO_LEAF3_Ethernet4
    no shutdown
-   mtu 9000
+   mtu 9214
    no switchport
    ip address 172.31.255.14/31
 !
 interface Ethernet5
    description P2P_LINK_TO_LEAF4_Ethernet4
    no shutdown
-   mtu 9000
+   mtu 9214
    no switchport
    ip address 172.31.255.20/31
 ```

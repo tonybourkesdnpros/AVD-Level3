@@ -299,8 +299,8 @@ vlan 4094
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet3 | P2P_LINK_TO_SPINE1_Ethernet3 | routed | - | 172.31.255.7/31 | default | 9000 | False | - | - |
-| Ethernet4 | P2P_LINK_TO_SPINE2_Ethernet3 | routed | - | 172.31.255.9/31 | default | 9000 | False | - | - |
+| Ethernet3 | P2P_LINK_TO_SPINE1_Ethernet3 | routed | - | 172.31.255.7/31 | default | 9214 | False | - | - |
+| Ethernet4 | P2P_LINK_TO_SPINE2_Ethernet3 | routed | - | 172.31.255.9/31 | default | 9214 | False | - | - |
 
 ### Ethernet Interfaces Device Configuration
 
@@ -319,14 +319,14 @@ interface Ethernet2
 interface Ethernet3
    description P2P_LINK_TO_SPINE1_Ethernet3
    no shutdown
-   mtu 9000
+   mtu 9214
    no switchport
    ip address 172.31.255.7/31
 !
 interface Ethernet4
    description P2P_LINK_TO_SPINE2_Ethernet3
    no shutdown
-   mtu 9000
+   mtu 9214
    no switchport
    ip address 172.31.255.9/31
 !
@@ -415,9 +415,9 @@ interface Loopback1
 | --------- | ----------- | --- | ---- | -------- |
 | Vlan10 | VLAN_10 | Riker | - | False |
 | Vlan20 | VLAN_20 | Riker | - | False |
-| Vlan3009 | MLAG_PEER_L3_iBGP: vrf Riker | Riker | 9000 | False |
-| Vlan4093 | MLAG_PEER_L3_PEERING | default | 9000 | False |
-| Vlan4094 | MLAG_PEER | default | 9000 | False |
+| Vlan3009 | MLAG_PEER_L3_iBGP: vrf Riker | Riker | 9214 | False |
+| Vlan4093 | MLAG_PEER_L3_PEERING | default | 9214 | False |
+| Vlan4094 | MLAG_PEER | default | 9214 | False |
 
 #### IPv4
 
@@ -448,20 +448,20 @@ interface Vlan20
 interface Vlan3009
    description MLAG_PEER_L3_iBGP: vrf Riker
    no shutdown
-   mtu 9000
+   mtu 9214
    vrf Riker
    ip address 10.255.251.1/31
 !
 interface Vlan4093
    description MLAG_PEER_L3_PEERING
    no shutdown
-   mtu 9000
+   mtu 9214
    ip address 10.255.251.1/31
 !
 interface Vlan4094
    description MLAG_PEER
    no shutdown
-   mtu 9000
+   mtu 9214
    no autostate
    ip address 10.255.252.1/31
 ```

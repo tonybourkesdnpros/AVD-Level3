@@ -113,7 +113,7 @@ ethernet_interfaces:
     peer_interface: Ethernet3
     peer_type: l3leaf
     description: P2P_LINK_TO_LEAF1_Ethernet3
-    mtu: 9000
+    mtu: 9214
     type: routed
     shutdown: false
     ip_address: 172.31.255.0/31
@@ -122,7 +122,7 @@ ethernet_interfaces:
     peer_interface: Ethernet3
     peer_type: l3leaf
     description: P2P_LINK_TO_LEAF2_Ethernet3
-    mtu: 9000
+    mtu: 9214
     type: routed
     shutdown: false
     ip_address: 172.31.255.6/31
@@ -131,7 +131,7 @@ ethernet_interfaces:
     peer_interface: Ethernet3
     peer_type: l3leaf
     description: P2P_LINK_TO_LEAF3_Ethernet3
-    mtu: 9000
+    mtu: 9214
     type: routed
     shutdown: false
     ip_address: 172.31.255.12/31
@@ -140,7 +140,7 @@ ethernet_interfaces:
     peer_interface: Ethernet3
     peer_type: l3leaf
     description: P2P_LINK_TO_LEAF4_Ethernet3
-    mtu: 9000
+    mtu: 9214
     type: routed
     shutdown: false
     ip_address: 172.31.255.18/31

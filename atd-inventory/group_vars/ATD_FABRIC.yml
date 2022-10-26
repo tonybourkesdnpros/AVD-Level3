@@ -1,7 +1,7 @@
 ---
 # This file contains anything you want to be consistant throughout the ATD lab environment
 
-fabric_name: ATD_LAB
+fabric_name: ATD_FABRIC
 
 
 local_users:

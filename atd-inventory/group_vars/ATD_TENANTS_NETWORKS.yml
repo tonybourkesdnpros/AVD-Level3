@@ -15,38 +15,19 @@ svi_profiles:
 
 tenants:
   # Tenant A Specific Information - VRFs / VLANs
-  Tenant_A:
+  Picard:
     mac_vrf_vni_base: 10000
     vrfs:
-      Tenant_A_OP_Zone:
+      Riker:
         vrf_vni: 10
-        vtep_diagnostic:
-          loopback: 100
-          loopback_ip_range: 10.255.1.0/24
         svis:
-          110:
-            name: Tenant_A_OP_Zone_1
+          10:
+            name: VLAN_10
             tags: [opzone]
             enabled: true
             ip_address_virtual: 10.1.10.1/24
-    l2vlans:
-      160:
-        vni_override: 55160
-        name: Tenant_A_VMOTION
-        tags: [vmotion]
-  # Tenant_B:
-  #   mac_vrf_vni_base: 20000
-  #   vrfs:
-  #     Tenant_B_OP_Zone:
-  #       vrf_vni: 20
-  #       svis:
-  #         210:
-  #           name: Tenant_B_OP_Zone_1
-  #           tags: ['opzone']
-  #           profile: WITH_NO_MTU
-  #           ip_address_virtual: 10.2.10.1/24
-  #         211:
-  #           name: Tenant_B_OP_Zone_2
-  #           tags: ['opzone']
-  #           profile: GENERIC_FULL
-  #           ip_address_virtual: 10.2.11.1/24
+          20:
+            name: VLAN_20
+            tags: [opzone]
+            enabled: true
+            ip_address_virtual: 10.1.20.1/24    

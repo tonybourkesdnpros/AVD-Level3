@@ -24,10 +24,14 @@ CVP_DEVICES:
     parentContainerName: ATD_POD1_SPINES
     configlets:
       - AVD_spine2
+  - fqdn: spine3
+    parentContainerName: ATD_POD1_SPINES
+    configlets:
+      - AVD_spine3
 CVP_CONTAINERS:
   ATD_DC1:
-    parentContainerName: ATD_LAB
-  ATD_LAB:
+    parentContainerName: ATD_FABRIC
+  ATD_FABRIC:
     parentContainerName: Tenant
   ATD_POD1:
     parentContainerName: ATD_DC1
@@ -36,9 +40,9 @@ CVP_CONTAINERS:
   ATD_POD1_SPINES:
     parentContainerName: ATD_POD1
   ATD_SERVERS:
-    parentContainerName: ATD_LAB
+    parentContainerName: ATD_FABRIC
   ATD_TENANTS_NETWORKS:
-    parentContainerName: ATD_LAB
+    parentContainerName: ATD_FABRIC
   rack1:
     parentContainerName: ATD_POD1_LEAFS
   rack2:

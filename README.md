@@ -32,10 +32,7 @@ Make sure you're in the persist directory, then clone this repository:
 
 ### Install Components
 
-### Fix for CVP modules
-You will need to downgrade your arista.cvp module:
 
-    ansible-galaxy collection install arista.cvp --force
     
 # Reset Lab Environment to Default
 

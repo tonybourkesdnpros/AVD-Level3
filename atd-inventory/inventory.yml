@@ -6,16 +6,13 @@ all:
         cv_atd1:
           ansible_host: 192.168.0.5
           ansible_user: arista
-          ansible_password: arista3wvx
+          ansible_password: aristae5uo
           cv_collection: v3
-    ATD_LAB:
-      vars:
-        ansible_user: arista
-        ansible_ssh_pass: arista3wvx
+    ATL_L2LS_FABRIC:
       children:
-        ATD_FABRIC:
+        ATL_L2LS:
           children:
-            ATD_SPINES:
+            L2LS_SPINES:
               vars:
                 type: spine
               hosts:
@@ -23,25 +20,64 @@ all:
                   ansible_host: 192.168.0.11
                 spine2:
                   ansible_host: 192.168.0.12
-            ATD_LEAFS:
+            L2LS_LEAFS:
               vars:
-                type: l3leaf
+                type: leaf
               children:
-                pod1:
+                rack1:
                   hosts:
                     leaf1:
                       ansible_host: 192.168.0.21
                     leaf2:
                       ansible_host: 192.168.0.22
-                pod2:
+                rack2:
                   hosts:
                     leaf3:
                       ansible_host: 192.168.0.23
                     leaf4:
                       ansible_host: 192.168.0.24
-            ATD_TENANTS_NETWORKS:
-              children:
-                ATD_LEAFS:
-            ATD_SERVERS:
-              children:
-                ATD_LEAFS:
+        # DC1_NETWORK_SERVICES:
+        #   children:
+        #     DC1_LEAFS:
+        #     DC1_SPINES:
+        # DC1_NETWORK_PORTS:
+        #   children:
+        #     DC1_LEAFS:
+        #     DC1_SPINES:
+    # ATD_LAB:
+    #   vars:
+    #     ansible_user: arista
+    #     ansible_ssh_pass: aristae5uo
+    #   children:
+    #     ATD_FABRIC:
+    #       children:
+    #         ATD_SPINES:
+    #           vars:
+    #             type: spine
+    #           hosts:
+    #             spine1:
+    #               ansible_host: 192.168.0.11
+    #             spine2:
+    #               ansible_host: 192.168.0.12
+    #         ATD_LEAFS:
+    #           vars:
+    #             type: l3leaf
+    #           children:
+    #             pod1:
+    #               hosts:
+    #                 leaf1:
+    #                   ansible_host: 192.168.0.21
+    #                 leaf2:
+    #                   ansible_host: 192.168.0.22
+    #             pod2:
+    #               hosts:
+    #                 leaf3:
+    #                   ansible_host: 192.168.0.23
+    #                 leaf4:
+    #                   ansible_host: 192.168.0.24
+    #         ATD_TENANTS_NETWORKS:
+    #           children:
+    #             ATD_LEAFS:
+    #         ATD_SERVERS:
+    #           children:
+    #             ATD_LEAFS:

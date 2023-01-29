@@ -4,31 +4,25 @@
 
 fabric_name: ATD_FABRIC
 
-# Enable vlan aware bundles
-vxlan_vlan_aware_bundles: true
 
-# bgp peer groups passwords
-bgp_peer_groups:
-  IPv4_UNDERLAY_PEERS:
-    password: "AQQvKeimxJu+uGQ/yYvv9w=="
-  EVPN_OVERLAY_PEERS:
-    password: "q+VNViP5i4rVjW1cxFv2wA=="
-  MLAG_IPv4_UNDERLAY_PEER:
-    password: "vnEaG8gMeQf3d3cN6PktXQ=="
+# Enable vlan aware bundles
+# vxlan_vlan_aware_bundles: true
+design:
+  type: "l2ls"
 
 # Spine Switches
 spine:
   defaults:
-    platform: vEOS-LAB
-    bgp_as: 65001
-    loopback_ipv4_pool: 192.0.200.0/24
-    bgp_defaults:
-      - 'no bgp default ipv4-unicast'
-      - 'distance bgp 20 200 200'
-      - 'graceful-restart restart-time 300'
-      - 'graceful-restart'
-    mlag: false
-  nodes:
+    # platform: vEOS-LAB
+    # bgp_as: 65001
+    # loopback_ipv4_pool: 192.0.200.0/24
+    # bgp_defaults:
+    #   - 'no bgp default ipv4-unicast'
+    #   - 'distance bgp 20 200 200'
+    #   - 'graceful-restart restart-time 300'
+    #   - 'graceful-restart'
+    mlag: true
+  nodes_groups:
     spine1:
       id: 11
       mgmt_ip: 192.168.0.11/24
